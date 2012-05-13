@@ -6,16 +6,18 @@
 
 var ScreenTest = function (bounds, href, browser, imgType) {
 
-    function init() {
 
-        // Start test on window.onload event
-        // TODO: See cross-browsers onload
-        window.onload = function () {
-            compareImages(bounds);
+    // Start test on window.onload event
+    // TODO: See cross-browsers onload
+    window.onload = function () {
+        compareImages(bounds);
 
-        }
+    }
 
-        return result;
+
+    // when load images
+    function onloadImagesDOM(id) {
+        console.log('load img : ' + id);
     }
 
     function compareImages(bounds) {
@@ -97,6 +99,18 @@ var ScreenTest = function (bounds, href, browser, imgType) {
         return imagesData;
     }
 
+
+    /********************************************************/
+    /*                Src Images Function                   */
+    /********************************************************/
+
+    /**
+     * Compile src for DOM elements <img> by the specified href, browser and imgType
+     * @param {String} href
+     * @param {String} browser
+     * @param {String} imgType
+     * @return {String}
+     */
     function getImagesSrc(href, browser, imgType) {
         var imagesSrc = {};
         imagesSrc.etalon = href + '/' + 'img-etalon-' + browser + '.' + imgType;
@@ -104,18 +118,31 @@ var ScreenTest = function (bounds, href, browser, imgType) {
         return imagesSrc;
     }
 
-    // Create DOM element <img> with the specified id and src
+    /********************************************************/
+    /*              DOM Elements Functions                  */
+    /********************************************************/
+
+    /**
+     * Create DOM element <img> with the specified id and src
+     * @param {String} id
+     * @param {String} src
+     * @return {DOMElement}
+     */
     function createImageDOM(id, src) {
         var body, img;
         body = document.getElementsByTagName('body')[0];
         img = document.createElement('img');
         img.id = id;
+        img.onload = onloadImagesDOM(id);
         img.src = src;
         body.appendChild(img);
         return img;
     }
 
-    // Delete DOM element <img> with the specified id
+    /**
+     * Delete DOM element <img> with the specified id
+     * @param {String} id
+     */
     function deleteImageDOM(id) {
         var body, img;
         body = document.getElementsByTagName('body')[0];
@@ -123,7 +150,12 @@ var ScreenTest = function (bounds, href, browser, imgType) {
         body.removeChild(img);
     }
 
-    // Create DOM element <canvas> with the specified id, width and height
+    /**
+     * Create DOM element <canvas> with the specified id, width and height
+     * @param {String} id
+     * @param {String} src
+     * @return {DOMElement}
+     */
     function createCanvasDOM(id, width, height) {
         var body, canvas;
         body = document.getElementsByTagName('body')[0];
@@ -135,16 +167,16 @@ var ScreenTest = function (bounds, href, browser, imgType) {
         return canvas;
     }
 
-    // Delete DOM element <canvas> with the specified id
+    /**
+     * Delete DOM element <canvas> with the specified id
+     * @param {String} id
+     */
     function deleteCanvasDOM(id) {
         var body, canvas;
         body = document.getElementsByTagName('body')[0];
         canvas = document.getElementById(id);
         body.removeChild(canvas);
     }
-
-
-    return init();
 
 
     // this.result = function () {
