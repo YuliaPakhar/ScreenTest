@@ -1,0 +1,109 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Canvas Visual Compare</title>
+    <script type="text/javascript">
+
+        var etalonCanvas, etalonCtx;
+        var testCanvas, testCtx;
+        var etalonImage, testImage;
+        var etalonImageData, testImageData;
+        var etalonImagePixel, testImagePixel;
+        var etalonImageLen, testImageLen;
+
+        var testPixels = [];
+
+        function init() {
+
+            etalonCanvas = document.getElementById("etalonCanvas");
+            etalonCtx = etalonCanvas.getContext('2d');
+
+            testCanvas = document.getElementById("testCanvas");
+            testCtx = testCanvas.getContext('2d');
+
+            etalonImage = document.getElementById("etalonImage");
+            testImage = document.getElementById("testImage");
+
+            etalonCtx.drawImage(etalonImage, 0, 0);
+            testCtx.drawImage(testImage, 0, 0);
+
+            etalonImageData = etalonCtx.getImageData(0, 0, etalonImage.width, etalonImage.height);
+            testImageData = testCtx.getImageData(0, 0, testImage.width, testImage.height);
+
+            etalonImagePixel = etalonImageData.data;
+            testImagePixel = testImageData.data;
+
+            etalonImageLen = etalonImagePixel.length;
+            testImageLen = testImagePixel.length;
+            //testCtx.strokeRect(150, 200, 300, 200);
+
+            testBounds();
+            test();
+
+        }
+
+        function testBounds() {
+            testPixels
+
+
+        }
+
+        /* Search different pixels
+         *
+         *
+         */
+        function test() {
+            var n = 0;
+            var bound = [];
+            for (var i = 25*1440*4; i < 900*1440*4; i += 4) {
+
+                if (etalonImagePixel[i] != testImagePixel[i]) {
+
+                    testImagePixel[i] = 255;
+                    testImagePixel[i+1] = 0;
+                    testImagePixel[i+2] = 0;
+
+                    bound.push(i);
+
+                    n = n + 1;
+
+                };
+
+            }
+
+
+            var test = bound;
+
+            alert(bound.length + " из " + etalonImageLen);
+
+            for (var k = 0; k < bound.length; k++) {
+                testImagePixel[bound[k]] = 0;
+                testImagePixel[bound[k]+1] = 255;
+                testImagePixel[bound[k]+2] = 0;
+
+            }
+
+
+            testCtx.putImageData(testImageData, 0, 0);
+            testCtx.strokeStyle = "rgba(255,0,0,1)";
+            testCtx.strokeRect(280, 120, 300, 200);
+            alert("Изображения отличаются на  " + n * 100 / etalonImageLen + " %");
+
+        }
+
+    </script>
+</head>
+
+<body onload="init()">
+    <h2>Test Result</h2>
+    <canvas id="testCanvas" width="1440" height="900"></canvas>
+    <h2>Etalon</h2>
+    <canvas id="etalonCanvas" width="1440" height="900"></canvas>
+    <br>
+    <br>
+    <br>
+    <h2>Original PNG / JPG / JPEG</h2>
+    <img id="etalonImage" src="img1.png">
+    <img id="testImage" src="img2.png">
+</body>
+</html>
