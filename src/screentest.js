@@ -1,15 +1,33 @@
-// ScreenTest Library
+/**
+ * ScreenTest Library
+ *
+ * Copyright (c) 2012, Andrey Chizh
+ * All rights reserved.
+ */
 
-// Copyright (c) 2012, Andrey Chizh
-// All rights reserved.
+/**
+ * Constructor for a new ScreenTest instance.
+ *
+ * Example:
+ * var test = new ScreenTest([0,24,1440,900], 'img/test', 'ff12', 'png');
+ *
+ * @param {Array} bounds
+ * @param {String} href
+ * @param {String} browser
+ * @param {String} imgType
+ */
+var ScreenTest = function(bounds, href, browser, imgType) {
 
 
-var ScreenTest = function (bounds, href, browser, imgType) {
+    var result;
 
+
+    /********************************************************/
+    /*                    Events Functions                  */
+    /********************************************************/
 
     // Start test on window.onload event
-    // TODO: See cross-browsers onload
-    window.onload = function () {
+    window.onload = function() {
         compareImages(bounds);
 
     }
@@ -20,13 +38,19 @@ var ScreenTest = function (bounds, href, browser, imgType) {
         console.log('load img : ' + id);
     }
 
+
+    // this.result = function () {
+    //     return result;
+    // }
+
+
     function compareImages(bounds) {
         var imagesData;
         var imageDataLength;
         var etalonImagePixel, testImagePixel;
         var imageWidth;
-        var allPixels = 0,
-            errorPixels = 0;
+        var allPixels = 1,
+            errorPixels = 1;
 
         imagesData = getImagesData();
 
@@ -58,7 +82,7 @@ var ScreenTest = function (bounds, href, browser, imgType) {
 
         imagesData.ctx.putImageData(imagesData.test, 0, 0);
 
-        alert(result);
+        alert(result.toFixed(3) + ' %');
 
     }
 
@@ -73,14 +97,14 @@ var ScreenTest = function (bounds, href, browser, imgType) {
         var imagesData = {};
 
         imagesSrc = getImagesSrc(href, browser, imgType);
-        etalonImage = createImageDOM('etalonImage', imagesSrc.etalon);
-        testImage = createImageDOM('testImage', imagesSrc.test);
+        etalonImage = createImageDOM('screentest-etalon-image', imagesSrc.etalon);
+        testImage = createImageDOM('screentest-test-image', imagesSrc.test);
 
         imageWidth = testImage.width;
         imageHeight = testImage.height;
 
-        etalonCanvas = createCanvasDOM('etalonCanvas', imageWidth, imageHeight);
-        testCanvas = createCanvasDOM('testCanvas', imageWidth, imageHeight);
+        etalonCanvas = createCanvasDOM('screentest-etalon-canvas', imageWidth, imageHeight);
+        testCanvas = createCanvasDOM('screentest-test-canvas', imageWidth, imageHeight);
 
         etalonCtx = etalonCanvas.getContext('2d');
         testCtx = testCanvas.getContext('2d');
@@ -177,11 +201,5 @@ var ScreenTest = function (bounds, href, browser, imgType) {
         canvas = document.getElementById(id);
         body.removeChild(canvas);
     }
-
-
-    // this.result = function () {
-    //     return result;
-    // }
-
 
 }
