@@ -18,9 +18,7 @@
  */
 var ScreenTest = function(bounds, href, browser, imgType) {
 
-
     var result;
-
 
     /********************************************************/
     /*                    Events Functions                  */
