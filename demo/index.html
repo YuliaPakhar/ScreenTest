@@ -2,17 +2,15 @@
 <head>
     <meta charset="utf-8">
     <title>ScreenTest Demo Page</title>
-
     <script type="text/javascript" src="../src/screentest.js"></script>
-
     <script type="text/javascript">
-       var test = new ScreenTest([0,24,1440,900], 'img/test', 'ff12', 'png');
-       //console.log(test.result());
-
+        var test = new ScreenTest([10,10,1430,890], 'img/test', 'ff12', 'png');
     </script>
 </head>
-
 <body>
     <h2>ScreenTest Demo</h2>
+    <FORM>
+        <INPUT TYPE="button" VALUE=" Clear " ONCLICK="test.clearResults()">
+    </FORM>
 </body>
 </html>

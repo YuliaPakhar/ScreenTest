@@ -1,8 +1,10 @@
 /**
  * ScreenTest Library
+ * Tool for testing the user interface by comparison screenshots.
+ *
+ * http://www.andreychizh.com/develop/screentest/
  *
  * Copyright (c) 2012, Andrey Chizh
- * All rights reserved.
  */
 
 /**
@@ -11,42 +13,56 @@
  * Example:
  * var test = new ScreenTest([0,24,1440,900], 'img/test', 'ff12', 'png');
  *
- * @param {Array} bounds
- * @param {String} href
+ * @param {Array} bounds Array of coordinates top-left and right-bottom boundary points of comparison:
+ *                       [0] - x-axis of left-top point, px
+ *                       [1] - y-axis of left-top point, px
+ *                       [2] - x-axis of right-bottom point, px
+ *                       [3] - y-axis of right-bottom point, px
+ *
+ * @param {String} src
  * @param {String} browser
  * @param {String} imgType
  */
-var ScreenTest = function(bounds, href, browser, imgType) {
+var ScreenTest = function (bounds, src, browser, imgType) {
 
-    var result;
+    var result = 0;
+    var countLoadImages = 0;
 
     /********************************************************/
-    /*                    Events Functions                  */
+    /*                     Events Methods                   */
     /********************************************************/
 
-    // Start test on window.onload event
-    window.onload = function() {
-        compareImages(bounds);
-
+    /**
+     * Event window.onload
+     */
+    window.onload = function () {
+        loadImagesDOM();
     }
 
-
-    // when load images
-    function onloadImagesDOM(id) {
-        console.log('load img : ' + id);
+    /**
+     * Event load images
+     */
+    function onloadImagesDOM() {
+        countLoadImages++;
+        if (countLoadImages == 2) {
+            compareImages(bounds);
+        }
     }
 
+    /********************************************************/
+    /*                     Main Methods                     */
+    /********************************************************/
 
-    // this.result = function () {
-    //     return result;
-    // }
-
-
+    /**
+     * Main method.
+     * Мakes comparison of images.
+     */
     function compareImages(bounds) {
-        var imagesData;
-        var imageDataLength;
-        var etalonImagePixel, testImagePixel;
-        var imageWidth;
+        var imagesData,
+            imageDataLength,
+            etalonImagePixel,
+            testImagePixel,
+            imageWidth;
         var allPixels = 1,
             errorPixels = 1;
 
@@ -59,44 +75,68 @@ var ScreenTest = function(bounds, href, browser, imgType) {
         imageWidth = imagesData.width * 4;
 
         for (var i = 0; i < imageDataLength; i += 4) {
-            if ((i > bounds[0] * 4 + imageWidth * parseInt(i / imageWidth)) &&
-                (i > bounds[1] * imageWidth) &&
-                (i < bounds[2] * 4 + imageWidth * parseInt(i / imageWidth)) &&
-                (i < bounds[3] * imageWidth)) {
 
-                allPixels += 1;
+            if (bounds) {
+                if ((i > bounds[0] * 4 + imageWidth * parseInt(i / imageWidth)) &&
+                    (i > bounds[1] * imageWidth) &&
+                    (i < bounds[2] * 4 + imageWidth * parseInt(i / imageWidth)) &&
+                    (i < bounds[3] * imageWidth)) {
+
+                    allPixels++;
+
+                    if (etalonImagePixel[i] != testImagePixel[i]) {
+                        errorPixels++;
+                        testImagePixel[i] = 255;
+                        testImagePixel[i + 1] = 0;
+                        testImagePixel[i + 2] = 0;
+                    }
+                }
+
+            } else {
+
+                allPixels++;
 
                 if (etalonImagePixel[i] != testImagePixel[i]) {
+                    errorPixels ++;
                     testImagePixel[i] = 255;
                     testImagePixel[i + 1] = 0;
                     testImagePixel[i + 2] = 0;
-
-                    errorPixels += 1;
                 }
             }
         }
 
         result = (errorPixels / allPixels) * 100;
+        createResultDOM(result.toFixed(2));
 
         imagesData.ctx.putImageData(imagesData.test, 0, 0);
 
-        alert(result.toFixed(3) + ' %');
+        if (bounds) {
+            imagesData.ctx.strokeStyle = 'rgb(255, 0, 0)';
+            imagesData.ctx.strokeRect(bounds[0], bounds[1], bounds[2] - bounds[0], bounds[3] - bounds[1]);
+        }
+
+        deleteImageDOM('screentest-etalon-image');
+        deleteImageDOM('screentest-test-image');
+        deleteCanvasDOM('screentest-etalon-canvas');
 
     }
 
 
     function getImagesData() {
-        var imagesSrc;
-        var etalonImage, testImage;
-        var imageWidth, imageHeight;
-        var etalonCanvas, testCanvas;
-        var etalonCtx, testCtx;
-        var etalonImageData, testImageData;
+        var etalonImage,
+            testImage,
+            imageWidth,
+            imageHeight,
+            etalonCanvas,
+            testCanvas,
+            etalonCtx,
+            testCtx,
+            etalonImageData,
+            testImageData;
         var imagesData = {};
 
-        imagesSrc = getImagesSrc(href, browser, imgType);
-        etalonImage = createImageDOM('screentest-etalon-image', imagesSrc.etalon);
-        testImage = createImageDOM('screentest-test-image', imagesSrc.test);
+        etalonImage = getImageDOM('screentest-etalon-image');
+        testImage = getImageDOM('screentest-test-image');
 
         imageWidth = testImage.width;
         imageHeight = testImage.height;
@@ -123,25 +163,38 @@ var ScreenTest = function(bounds, href, browser, imgType) {
 
 
     /********************************************************/
-    /*                Src Images Function                   */
+    /*                  Load Images Function                */
+    /********************************************************/
+
+    /**
+     * In the event window.onload loads the images for the test
+     */
+    function loadImagesDOM() {
+        var imagesSrc = getImagesSrc(src, browser, imgType);
+        createImageDOM('screentest-etalon-image', imagesSrc.etalon);
+        createImageDOM('screentest-test-image', imagesSrc.test);
+    }
+
+    /********************************************************/
+    /*            Compile Src Images Method                 */
     /********************************************************/
 
     /**
      * Compile src for DOM elements <img> by the specified href, browser and imgType
-     * @param {String} href
+     * @param {String} src
      * @param {String} browser
      * @param {String} imgType
      * @return {String}
      */
-    function getImagesSrc(href, browser, imgType) {
+    function getImagesSrc(src, browser, imgType) {
         var imagesSrc = {};
-        imagesSrc.etalon = href + '/' + 'img-etalon-' + browser + '.' + imgType;
-        imagesSrc.test = href + '/' + 'img-test-' + browser + '.' + imgType;
+        imagesSrc.etalon = src + '/' + 'img-etalon-' + browser + '.' + imgType;
+        imagesSrc.test = src + '/' + 'img-test-' + browser + '.' + imgType;
         return imagesSrc;
     }
 
     /********************************************************/
-    /*              DOM Elements Functions                  */
+    /*                DOM Elements Methods                  */
     /********************************************************/
 
     /**
@@ -155,10 +208,18 @@ var ScreenTest = function(bounds, href, browser, imgType) {
         body = document.getElementsByTagName('body')[0];
         img = document.createElement('img');
         img.id = id;
-        img.onload = onloadImagesDOM(id);
+        img.onload = onloadImagesDOM;
         img.src = src;
         body.appendChild(img);
         return img;
+    }
+
+    /**
+     * Get DOM element <img> with the specified id
+     * @param {String} id
+     */
+    function getImageDOM(id) {
+        return document.getElementById(id);
     }
 
     /**
@@ -198,6 +259,47 @@ var ScreenTest = function(bounds, href, browser, imgType) {
         body = document.getElementsByTagName('body')[0];
         canvas = document.getElementById(id);
         body.removeChild(canvas);
+    }
+
+    /**
+     * Create DOM element <div id='result'> with result
+     * @param {Number} result
+     * @return {DOMElement}
+     */
+    function createResultDOM(result) {
+        var body, div;
+        body = document.getElementsByTagName('body')[0];
+        div = document.createElement('div');
+        div.id = 'result';
+        div.innerHTML = result;
+        body.appendChild(div);
+    }
+
+    /**
+     * Delete DOM element <div id='result'> with result
+     */
+    function deleteResultDOM() {
+        var body, div;
+        body = document.getElementsByTagName('body')[0];
+        div = document.getElementById('result');
+        body.removeChild(div);
+    }
+
+    /********************************************************/
+    /*                  Utilities Methods                   */
+    /********************************************************/
+
+    this.clearResults = function () {
+        deleteCanvasDOM('screentest-test-canvas');
+        deleteResultDOM();
+
+        countLoadImages = null;
+        result = null;
+        bounds = null;
+        browser = null;
+        src = null;
+        imgType = null;
+
     }
 
 }
