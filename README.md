@@ -1,8 +1,6 @@
 ## ScreenTest Library
 Tool for testing the user interface by comparison screenshots.
-
 Version 0.1
-
 Copyright © Andrey Chizh, 2012
 
 ### Demo
