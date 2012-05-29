@@ -25,7 +25,7 @@
  * @param {String} testImg    Name of test screenshot image
  * @param {String} etalonImg  Name of etalon screenshot image
  */
-var ScreenTest = function (bounds, srcImg, testImg, etalonImg) {
+var ScreenTest = function(bounds, srcImg, testImg, etalonImg) {
 
     var result = 0;
     var countLoadImages = 0;
@@ -283,7 +283,7 @@ var ScreenTest = function (bounds, srcImg, testImg, etalonImg) {
     /*                  Utilities Methods                   */
     /********************************************************/
 
-    this.tearDown = function () {
+    this.tearDown = function() {
         deleteCanvasDOM('screentest-test-canvas');
         deleteResultDOM();
 
