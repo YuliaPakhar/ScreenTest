@@ -13,15 +13,17 @@
  * Example:
  * var test = new ScreenTest([0,24,1440,900], 'img/test', 'ff12', 'png');
  *
- * @param {Array} bounds Array of coordinates top-left and right-bottom boundary points of comparison:
- *                       [0] - x-axis of left-top point, px
- *                       [1] - y-axis of left-top point, px
- *                       [2] - x-axis of right-bottom point, px
- *                       [3] - y-axis of right-bottom point, px
+ * @param {Array|Null} bounds Array of coordinates top-left and right-bottom boundary points of comparison:
+ *                            [0] - x-axis of left-top point, px
+ *                            [1] - y-axis of left-top point, px
+ *                            [2] - x-axis of right-bottom point, px
+ *                            [3] - y-axis of right-bottom point, px
  *
- * @param {String} src
- * @param {String} browser
- * @param {String} imgType
+ *                            If null - compare screenshots with no boundaries.
+ *
+ * @param {String} src        URL to the images folder. The absolute or relative path
+ * @param {String} browser    ID of the browser that made ​​a screenshot
+ * @param {String} imgType    Type of images (screenshots)
  */
 var ScreenTest = function (bounds, src, browser, imgType) {
 
@@ -45,7 +47,7 @@ var ScreenTest = function (bounds, src, browser, imgType) {
     function onloadImagesDOM() {
         countLoadImages++;
         if (countLoadImages == 2) {
-            compareImages(bounds);
+            main(bounds);
         }
     }
 
@@ -57,7 +59,7 @@ var ScreenTest = function (bounds, src, browser, imgType) {
      * Main method.
      * Мakes comparison of images.
      */
-    function compareImages(bounds) {
+    function main(bounds) {
         var imagesData,
             imageDataLength,
             etalonImagePixel,
@@ -75,7 +77,6 @@ var ScreenTest = function (bounds, src, browser, imgType) {
         imageWidth = imagesData.width * 4;
 
         for (var i = 0; i < imageDataLength; i += 4) {
-
             if (bounds) {
                 if ((i > bounds[0] * 4 + imageWidth * parseInt(i / imageWidth)) &&
                     (i > bounds[1] * imageWidth) &&
@@ -83,7 +84,6 @@ var ScreenTest = function (bounds, src, browser, imgType) {
                     (i < bounds[3] * imageWidth)) {
 
                     allPixels++;
-
                     if (etalonImagePixel[i] != testImagePixel[i]) {
                         errorPixels++;
                         testImagePixel[i] = 255;
@@ -91,11 +91,8 @@ var ScreenTest = function (bounds, src, browser, imgType) {
                         testImagePixel[i + 2] = 0;
                     }
                 }
-
             } else {
-
                 allPixels++;
-
                 if (etalonImagePixel[i] != testImagePixel[i]) {
                     errorPixels ++;
                     testImagePixel[i] = 255;
@@ -106,22 +103,25 @@ var ScreenTest = function (bounds, src, browser, imgType) {
         }
 
         result = (errorPixels / allPixels) * 100;
+        imagesData.ctx.putImageData(imagesData.test, 0, 0);
+
         createResultDOM(result.toFixed(2));
 
-        imagesData.ctx.putImageData(imagesData.test, 0, 0);
+        deleteImageDOM('screentest-etalon-image');
+        deleteImageDOM('screentest-test-image');
+        deleteCanvasDOM('screentest-etalon-canvas');
 
         if (bounds) {
             imagesData.ctx.strokeStyle = 'rgb(255, 0, 0)';
             imagesData.ctx.strokeRect(bounds[0], bounds[1], bounds[2] - bounds[0], bounds[3] - bounds[1]);
         }
 
-        deleteImageDOM('screentest-etalon-image');
-        deleteImageDOM('screentest-test-image');
-        deleteCanvasDOM('screentest-etalon-canvas');
-
     }
 
-
+    /**
+     * Get image data method.
+     * @return {Object}
+     */
     function getImagesData() {
         var etalonImage,
             testImage,
