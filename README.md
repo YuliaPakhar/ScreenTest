@@ -22,7 +22,7 @@ For a live demo, go to [http://www.andreychizh.com/develop/screentest/](http://w
                                If null - compare screenshots with no boundaries.
  
     @param {String} src        URL to the images folder. The absolute or relative path
-    @param {String} browser    ID of the browser
+    @param {String} browser    ID of the browser that made ​​a screenshot
     @param {String} imgType    Type of images (screenshots)
 
 ##### Example:
