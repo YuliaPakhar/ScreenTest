@@ -31,7 +31,7 @@ For a live demo, go to [http://www.andreychizh.com/develop/screentest/](http://w
     
 ### 3. Result:
 
-The result is displayed in a div element "result":
+The result is displayed in a div element with id="result":
 
     <div id="result">12.46</div>
 
