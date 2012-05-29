@@ -29,7 +29,7 @@ For a live demo, go to [http://www.andreychizh.com/develop/screentest/](http://w
 
     var test = new ScreenTest([10,10,1430,890], 'img/test', 'ff12', 'png');
     
-### 3. Result:
+### 2. Result:
 
 The result is displayed in a div element with id="result":
 
