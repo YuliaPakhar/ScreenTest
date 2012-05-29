@@ -7,7 +7,7 @@ Version 0.1
 [http://www.andreychizh.com/develop/screentest/](http://www.andreychizh.com/develop/screentest/)
 
 ## Use Library
-### Constructor:
+### 1. Constructor:
 
     var test = new ScreenTest(bounds, src, browser, imgType);
     
@@ -27,7 +27,7 @@ Version 0.1
 
     var test = new ScreenTest([10,10,1430,890], 'img/test', 'ff12', 'png');
     
-### Cleaning of the environment after the test: 
+### 2. Cleaning of the environment after the test: 
     test.clearResults();
 
 ## Copyright
