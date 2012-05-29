@@ -21,11 +21,11 @@
  *
  *                            If null - compare screenshots with no boundaries.
  *
- * @param {String} src        URL to the images folder. The absolute or relative path
- * @param {String} browser    ID of the browser that made ​​a screenshot
- * @param {String} imgType    Type of images (screenshots)
+ * @param {String} srcImg     URL to the images folder. The absolute or relative path
+ * @param {String} testImg    Name of test screenshot image
+ * @param {String} etalonImg  Name of etalon screenshot image
  */
-var ScreenTest = function (bounds, src, browser, imgType) {
+var ScreenTest = function (bounds, srcImg, testImg, etalonImg) {
 
     var result = 0;
     var countLoadImages = 0;
@@ -170,7 +170,7 @@ var ScreenTest = function (bounds, src, browser, imgType) {
      * In the event window.onload loads the images for the test
      */
     function loadImagesDOM() {
-        var imagesSrc = getImagesSrc(src, browser, imgType);
+        var imagesSrc = getImagesSrc(srcImg, testImg, etalonImg);
         createImageDOM('screentest-etalon-image', imagesSrc.etalon);
         createImageDOM('screentest-test-image', imagesSrc.test);
     }
@@ -180,16 +180,16 @@ var ScreenTest = function (bounds, src, browser, imgType) {
     /********************************************************/
 
     /**
-     * Compile src for DOM elements <img> by the specified href, browser and imgType
-     * @param {String} src
-     * @param {String} browser
-     * @param {String} imgType
-     * @return {String}
+     * Compile src for DOM elements <img> by the specified src and images names
+     * @param {String} srcImg
+     * @param {String} testImg
+     * @param {String} etalonImg
+     * @return {Object}
      */
-    function getImagesSrc(src, browser, imgType) {
+    function getImagesSrc(srcImg, testImg, etalonImg) {
         var imagesSrc = {};
-        imagesSrc.etalon = src + '/' + 'img-etalon-' + browser + '.' + imgType;
-        imagesSrc.test = src + '/' + 'img-test-' + browser + '.' + imgType;
+        imagesSrc.test = srcImg + testImg;
+        imagesSrc.etalon = srcImg + etalonImg;
         return imagesSrc;
     }
 

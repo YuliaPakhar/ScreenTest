@@ -9,7 +9,7 @@ For a live demo, go to [http://www.andreychizh.com/develop/screentest/](http://w
 ## Use Library
 ### 1. Constructor:
 
-    var test = new ScreenTest(bounds, src, browser, imgType);
+    var test = new ScreenTest(bounds, srcImg, testImg, etalonImg);
     
 ##### Params:   
     
@@ -21,13 +21,13 @@ For a live demo, go to [http://www.andreychizh.com/develop/screentest/](http://w
 
                                If null - compare screenshots with no boundaries.
  
-    @param {String} src        URL to the images folder. The absolute or relative path
-    @param {String} browser    ID of the browser that made ​​a screenshot
-    @param {String} imgType    Type of images (screenshots)
+    @param {String} srcImg     URL to the images folder. The absolute or relative path
+    @param {String} testImg    Name of test screenshot image
+    @param {String} etalonImg  Name of etalon screenshot image
 
 ##### Example:
 
-    var test = new ScreenTest([10,10,1430,890], 'img/test', 'ff12', 'png');
+    var test = new ScreenTest([10,10,1430,890], 'img/test/', 'firefox_test.png', 'firefox_standart.png');
     
 ### 2. Result:
 
