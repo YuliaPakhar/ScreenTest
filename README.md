@@ -4,7 +4,7 @@ Tool for testing the user interface by comparison screenshots.
 Version 0.1
 
 ## Demo
-[http://www.andreychizh.com/develop/screentest/](http://www.andreychizh.com/develop/screentest/)
+For a live demo, go to [http://www.andreychizh.com/develop/screentest/](http://www.andreychizh.com/develop/screentest/)
 
 ## Use Library
 ### 1. Constructor:
