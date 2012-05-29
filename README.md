@@ -34,4 +34,5 @@ Version 0.1
 ## Copyright
 
 Copyright © Andrey Chizh, 2012
+
 [http://www.andreychizh.com/](http://www.andreychizh.com/)
