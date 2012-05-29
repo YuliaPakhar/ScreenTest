@@ -10,6 +10,18 @@ Version 0.1
 ### Constructor:
 
     var test = new ScreenTest(bounds, src, browser, imgType);
+    
+##### Params:   
+    
+    @param {Array} bounds Array of coordinates top-left and right-bottom boundary points of comparison:
+                          [0] - x-axis of left-top point, px
+                          [1] - y-axis of left-top point, px
+                          [2] - x-axis of right-bottom point, px
+                          [3] - y-axis of right-bottom point, px
+ 
+    @param {String} src
+    @param {String} browser
+    @param {String} imgType
 
 #### Example:
 
