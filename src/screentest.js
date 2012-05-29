@@ -289,7 +289,7 @@ var ScreenTest = function (bounds, srcImg, testImg, etalonImg) {
     /*                  Utilities Methods                   */
     /********************************************************/
 
-    this.clearResults = function () {
+    this.tearDown = function () {
         deleteCanvasDOM('screentest-test-canvas');
         deleteResultDOM();
 

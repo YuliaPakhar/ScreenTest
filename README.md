@@ -37,7 +37,7 @@ The result is displayed in a div element with id="result":
 
 ### 3. Cleaning of the environment after the test:
 
-    test.clearResults();
+    test.tearDown();
 
 ## Copyright
 
