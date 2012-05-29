@@ -4,7 +4,7 @@
  *
  * http://www.andreychizh.com/develop/screentest/
  *
- * Copyright (c) 2012, Andrey Chizh
+ * Copyright (c) Andrey Chizh, 2012
  */
 
 /**
