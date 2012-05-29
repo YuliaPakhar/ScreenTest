@@ -8,6 +8,11 @@ Version 0.1
 
 ## Use Library
 ### Constructor:
+
+    var test = new ScreenTest(bounds, src, browser, imgType);
+
+#### Example:
+
     var test = new ScreenTest([10,10,1430,890], 'img/test', 'ff12', 'png');
     
 ### Cleaning of the environment after the test: 
