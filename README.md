@@ -31,7 +31,7 @@ For a live demo, go to [http://www.andreychizh.com/develop/screentest/](http://w
     
 ### 2. Result:
 
-The result is displayed in a div element with id="result"
+The result is displayed in a div element with id="result" in the percentage difference images.
 
 ##### Example:
 
