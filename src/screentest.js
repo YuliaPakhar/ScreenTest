@@ -11,7 +11,7 @@
  * Constructor for a new ScreenTest instance.
  *
  * Example:
- * var test = new ScreenTest([10,10,1430,890], 'img/test/', 'firefox_test.png', 'firefox_standart.png');
+ * var test = new ScreenTest([10,10,1430,890], 'img/test/', 'firefox_test.png', 'firefox_etalon.png');
  *
  * @param {Array|Null} bounds Array of coordinates top-left and right-bottom boundary points of comparison:
  *                            [0] - x-axis of left-top point, px
@@ -61,10 +61,8 @@ var ScreenTest = function (bounds, srcImg, testImg, etalonImg) {
      * Мakes comparison of images.
      */
     function main(bounds) {
-        var imagesData,
-            imageDataLength,
-            etalonImagePixel,
-            testImagePixel,
+        var imagesData, imageDataLength,
+            etalonImagePixel, testImagePixel,
             imageWidth;
         var allPixels = 1,
             errorPixels = 0;
@@ -124,16 +122,11 @@ var ScreenTest = function (bounds, srcImg, testImg, etalonImg) {
      * @return {Object}
      */
     function getImagesData() {
-        var etalonImage,
-            testImage,
-            imageWidth,
-            imageHeight,
-            etalonCanvas,
-            testCanvas,
-            etalonCtx,
-            testCtx,
-            etalonImageData,
-            testImageData;
+        var etalonImage, testImage,
+            imageWidth, imageHeight,
+            etalonCanvas, testCanvas,
+            etalonCtx, testCtx,
+            etalonImageData, testImageData;
         var imagesData = {};
 
         etalonImage = getImageDOM('screentest-etalon-image');
