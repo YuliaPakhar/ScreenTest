@@ -5,6 +5,7 @@ Version 0.1
 
 ## Demo
 For a live demo, go to [http://www.andreychizh.com/develop/screentest/](http://www.andreychizh.com/develop/screentest/)
+![Candor](https://raw.github.com/indutny/candor/master/logo/logo.png)
 
 ## Use Library
 ### 1. Constructor:
