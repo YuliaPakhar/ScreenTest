@@ -1,5 +1,7 @@
 ## ScreenTest Library
 Tool for testing the user interface by comparison screenshots.
+Version 0.1 
+Copyright © Andrey Chizh, 2012
 
 ### Demo
 [http://www.andreychizh.com/develop/screentest/](http://www.andreychizh.com/develop/screentest/)
@@ -12,4 +14,4 @@ Tool for testing the user interface by comparison screenshots.
     test.clearResults();
 
 ### About
-Copyright (c) 2012, Andrey Chizh
+Copyright © Andrey Chizh, 2012
