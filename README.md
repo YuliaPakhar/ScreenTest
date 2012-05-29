@@ -13,15 +13,17 @@ For a live demo, go to [http://www.andreychizh.com/develop/screentest/](http://w
     
 ##### Params:   
     
-    @param {Array} bounds    Array of coordinates top-left and right-bottom boundary points of comparison:
-                             [0] - x-axis of left-top point, px
-                             [1] - y-axis of left-top point, px
-                             [2] - x-axis of right-bottom point, px
-                             [3] - y-axis of right-bottom point, px
+    @param {Array|Null} bounds Array of coordinates top-left and right-bottom boundary points of comparison:
+                               [0] - x-axis of left-top point, px
+                               [1] - y-axis of left-top point, px
+                               [2] - x-axis of right-bottom point, px
+                               [3] - y-axis of right-bottom point, px
+
+                               If null - compare screenshots with no boundaries.
  
-    @param {String} src      URL to the images folder. The absolute or relative path
-    @param {String} browser  ID of the browser
-    @param {String} imgType  Type of images (screenshots)
+    @param {String} src        URL to the images folder. The absolute or relative path
+    @param {String} browser    ID of the browser
+    @param {String} imgType    Type of images (screenshots)
 
 ##### Example:
 
