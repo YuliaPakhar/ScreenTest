@@ -29,7 +29,13 @@ For a live demo, go to [http://www.andreychizh.com/develop/screentest/](http://w
 
     var test = new ScreenTest([10,10,1430,890], 'img/test', 'ff12', 'png');
     
-### 2. Cleaning of the environment after the test:
+### 3. Result:
+
+The result is displayed in a div element "result":
+
+    <div id="result">12.46</div>
+
+### 3. Cleaning of the environment after the test:
 
     test.clearResults();
 
