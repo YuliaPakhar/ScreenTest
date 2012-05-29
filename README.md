@@ -5,8 +5,8 @@ Version 0.1
 
 ## Demo
 For a live demo, go to [http://www.andreychizh.com/develop/screentest/](http://www.andreychizh.com/develop/screentest/)
-[Etalon](http://cloud.github.com/downloads/AndreyChizh/ScreenTest/firefox_standart.png)
-[Test](http://cloud.github.com/downloads/AndreyChizh/ScreenTest/firefox_test.png)
+![Etalon](http://cloud.github.com/downloads/AndreyChizh/ScreenTest/firefox_standart.png)
+![Test](http://cloud.github.com/downloads/AndreyChizh/ScreenTest/firefox_test.png)
 
 ## Use Library
 ### 1. Constructor:
