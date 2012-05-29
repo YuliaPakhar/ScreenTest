@@ -39,6 +39,10 @@ The result is displayed in a div element with id="result":
 
     test.tearDown();
 
+## Download Library
+
+ [ScreenTest Library](https://github.com/AndreyChizh/ScreenTest/downloads)
+
 ## Copyright
 
 Copyright © Andrey Chizh, 2012
