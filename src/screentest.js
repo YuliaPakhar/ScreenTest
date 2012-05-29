@@ -11,7 +11,7 @@
  * Constructor for a new ScreenTest instance.
  *
  * Example:
- * var test = new ScreenTest([0,24,1440,900], 'img/test', 'ff12', 'png');
+ * var test = new ScreenTest([10,10,1430,890], 'img/test/', 'firefox_test.png', 'firefox_standart.png');
  *
  * @param {Array|Null} bounds Array of coordinates top-left and right-bottom boundary points of comparison:
  *                            [0] - x-axis of left-top point, px
