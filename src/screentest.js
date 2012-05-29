@@ -45,8 +45,9 @@ var ScreenTest = function (bounds, srcImg, testImg, etalonImg) {
      * Event load images
      */
     function onloadImagesDOM() {
+        var numberImages = 2;
         countLoadImages++;
-        if (countLoadImages == 2) {
+        if (countLoadImages == numberImages) {
             main(bounds);
         }
     }
@@ -66,7 +67,7 @@ var ScreenTest = function (bounds, srcImg, testImg, etalonImg) {
             testImagePixel,
             imageWidth;
         var allPixels = 1,
-            errorPixels = 1;
+            errorPixels = 0;
 
         imagesData = getImagesData();
 
