@@ -23,12 +23,15 @@ Version 0.1
     @param {String} browser
     @param {String} imgType
 
-#### Example:
+##### Example:
 
     var test = new ScreenTest([10,10,1430,890], 'img/test', 'ff12', 'png');
     
-### 2. Cleaning of the environment after the test: 
+### 2. Cleaning of the environment after the test:
+
     test.clearResults();
 
 ## Copyright
+
 Copyright © Andrey Chizh, 2012
+[http://www.andreychizh.com/](http://www.andreychizh.com/)
