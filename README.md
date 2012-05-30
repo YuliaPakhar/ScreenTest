@@ -1,7 +1,7 @@
 # ScreenTest Library
 Tool for testing the user interface by comparison screenshots.
 
-Version 0.1
+Current version: 0.1
 
 ## Demo
 For a live demo, go to [http://www.andreychizh.com/develop/screentest/](http://www.andreychizh.com/develop/screentest/)
