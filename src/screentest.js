@@ -2,9 +2,12 @@
  * ScreenTest Library
  * Tool for testing the user interface by comparison screenshots.
  *
- * http://www.andreychizh.com/develop/screentest/
+ * Version 1.0.2
+ *
+ * Demo: http://www.andreychizh.com/develop/screentest/
  *
  * Copyright (c) Andrey Chizh, 2012
+ * http://www.andreychizh.com/
  */
 
 /**
