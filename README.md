@@ -1,6 +1,5 @@
 # ScreenTest Library
-Tool for testing the user interface by comparison screenshots.
-Based on JavaScript and HTML5 Canvas.
+Tool for testing the user interface by comparison screenshots. Based on JavaScript and HTML5 Canvas.
 
 Current version: 1.0.2
 
