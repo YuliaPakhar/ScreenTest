@@ -23,7 +23,7 @@ For a live demo, go to [http://www.andreychizh.com/develop/screentest/](http://w
  
     @param {String} srcImg     Local path to the images folder. The absolute or relative path.
                                Attention! There should be a single host for html test page, folder with images 
-                                          and this ScreenTest library (Constraint of HTML5 security)
+                               and this ScreenTest library (Constraint of HTML5 security)
 
     @param {String} testImg    Name of test screenshot image
     @param {String} etalonImg  Name of etalon screenshot image
