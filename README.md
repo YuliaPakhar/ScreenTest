@@ -21,9 +21,9 @@ For a live demo, go to [http://www.andreychizh.com/develop/screentest/](http://w
 
                                If null - compare screenshots with no boundaries.
  
-    @param {String} srcImg     URL to the images folder. The absolute or relative path
+    @param {String} srcImg     Local path to the images folder. The absolute or relative path.
                                Attention! There should be a single host for html test page, folder with images 
-                                          and this ScreenTest library.
+                                          and this ScreenTest library (Constraint of HTML5 security)
 
     @param {String} testImg    Name of test screenshot image
     @param {String} etalonImg  Name of etalon screenshot image
