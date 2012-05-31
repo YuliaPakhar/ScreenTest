@@ -1,7 +1,7 @@
 # ScreenTest Library
 Tool for testing the user interface by comparison screenshots.
 
-Version 0.1
+Current version: 1.0.2
 
 ## Demo
 For a live demo, go to [http://www.andreychizh.com/develop/screentest/](http://www.andreychizh.com/develop/screentest/)
@@ -22,6 +22,7 @@ For a live demo, go to [http://www.andreychizh.com/develop/screentest/](http://w
                                If null - compare screenshots with no boundaries.
  
     @param {String} srcImg     URL to the images folder. The absolute or relative path
+                               Attention! There should be a single host images and libraries.
     @param {String} testImg    Name of test screenshot image
     @param {String} etalonImg  Name of etalon screenshot image
 
