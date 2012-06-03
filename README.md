@@ -8,7 +8,7 @@ Current version: 1.0.2
 ## Demo
 For a live demo, go to [http://www.andreychizh.com/develop/screentest/](http://www.andreychizh.com/develop/screentest/)
 
-## Use Library
+## Documentation
 ### 1. Constructor:
 
     var test = new ScreenTest(bounds, srcImg, testImg, etalonImg);
