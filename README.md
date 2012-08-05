@@ -55,4 +55,4 @@ The result is displayed in a div element with id="result" in the percentage diff
 
 Copyright © Andrey Chizh, 2012
 
-[http://www.andreychizh.com/](http://andreychizh.com/)
+[http://andreychizh.com/](http://andreychizh.com/)
