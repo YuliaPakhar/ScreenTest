@@ -2,7 +2,7 @@
  * ScreenTest Library
  * Tool for testing the user interface by comparison screenshots.
  *
- * Version 1.0.2
+ * Version 1.0.4
  *
  * Demo: http://www.andreychizh.com/develop/screentest/
  *
@@ -14,24 +14,24 @@
  * Constructor for a new ScreenTest instance.
  *
  * Example:
- * var test = new ScreenTest([10,10,1430,890], 'img/test/', 'firefox_test.png', 'firefox_etalon.png');
+ * var test = new ScreenTest('img/test/', 'firefox_test.png', 'firefox_etalon.png', [10,10,1430,890]);
  *
+ * @param {String} srcImg     Local path to the images folder.
+ *                            Attention! There should be a single host for html test page, folder with images
+ *                            and this ScreenTest library (Constraint of HTML5 security)
+ *
+ * @param {String} testImg    Name of test screenshot image
+ * @param {String} etalonImg  Name of etalon screenshot image
+ * 
  * @param {Array|Null} bounds Array of coordinates top-left and right-bottom boundary points of comparison:
  *                            [0] - x-axis of left-top point, px
  *                            [1] - y-axis of left-top point, px
  *                            [2] - x-axis of right-bottom point, px
  *                            [3] - y-axis of right-bottom point, px
  *
- *                            If null - compare screenshots with no boundaries.
- *
- * @param {String} srcImg     Local path to the images folder. The absolute or relative path.
- *                            Attention! There should be a single host for html test page, folder with images
- *                            and this ScreenTest library (Constraint of HTML5 security)
- *
- * @param {String} testImg    Name of test screenshot image
- * @param {String} etalonImg  Name of etalon screenshot image
+ *                            If no set - compare screenshots with no boundaries.
  */
-var ScreenTest = function(bounds, srcImg, testImg, etalonImg) {
+var ScreenTest = function(srcImg, testImg, etalonImg, bounds) {
 
     var result = 0;
     var countLoadImages = 0;
@@ -44,7 +44,7 @@ var ScreenTest = function(bounds, srcImg, testImg, etalonImg) {
      * Event window.onload
      */
     window.onload = function () {
-        loadImagesDOM();
+        loadImages();
     }
 
     /**
@@ -82,7 +82,7 @@ var ScreenTest = function(bounds, srcImg, testImg, etalonImg) {
         imageWidth = imagesData.width * 4;
 
         for (var i = 0; i < imageDataLength; i += 4) {
-            if (bounds) {
+            if (bounds && bounds.length == 4) {
                 if ((i > bounds[0] * 4 + imageWidth * parseInt(i / imageWidth)) &&
                     (i > bounds[1] * imageWidth) &&
                     (i < bounds[2] * 4 + imageWidth * parseInt(i / imageWidth)) &&
@@ -110,11 +110,11 @@ var ScreenTest = function(bounds, srcImg, testImg, etalonImg) {
         result = (errorPixels / allPixels) * 100;
         imagesData.ctx.putImageData(imagesData.test, 0, 0);
 
-        createResultDOM(result.toFixed(2));
+        createResult(result.toFixed(2));
 
-        deleteImageDOM('screentest-etalon-image');
-        deleteImageDOM('screentest-test-image');
-        deleteCanvasDOM('screentest-etalon-canvas');
+        deleteImage('screentest-etalon-image');
+        deleteImage('screentest-test-image');
+        deleteCanvas('screentest-etalon-canvas');
 
         if (bounds) {
             imagesData.ctx.strokeStyle = 'rgb(255, 0, 0)';
@@ -135,14 +135,14 @@ var ScreenTest = function(bounds, srcImg, testImg, etalonImg) {
             etalonImageData, testImageData;
         var imagesData = {};
 
-        etalonImage = getImageDOM('screentest-etalon-image');
-        testImage = getImageDOM('screentest-test-image');
+        etalonImage = getImage('screentest-etalon-image');
+        testImage = getImage('screentest-test-image');
 
         imageWidth = testImage.width;
         imageHeight = testImage.height;
 
-        etalonCanvas = createCanvasDOM('screentest-etalon-canvas', imageWidth, imageHeight);
-        testCanvas = createCanvasDOM('screentest-test-canvas', imageWidth, imageHeight);
+        etalonCanvas = createCanvas('screentest-etalon-canvas', imageWidth, imageHeight);
+        testCanvas = createCanvas('screentest-test-canvas', imageWidth, imageHeight);
 
         etalonCtx = etalonCanvas.getContext('2d');
         testCtx = testCanvas.getContext('2d');
@@ -169,10 +169,10 @@ var ScreenTest = function(bounds, srcImg, testImg, etalonImg) {
     /**
      * In the event window.onload loads the images for the test
      */
-    function loadImagesDOM() {
+    function loadImages() {
         var imagesSrc = getImagesSrc(srcImg, testImg, etalonImg);
-        createImageDOM('screentest-etalon-image', imagesSrc.etalon);
-        createImageDOM('screentest-test-image', imagesSrc.test);
+        createImage('screentest-etalon-image', imagesSrc.etalon);
+        createImage('screentest-test-image', imagesSrc.test);
     }
 
     /********************************************************/
@@ -203,7 +203,7 @@ var ScreenTest = function(bounds, srcImg, testImg, etalonImg) {
      * @param {String} src
      * @return {DOMElement}
      */
-    function createImageDOM(id, src) {
+    function createImage(id, src) {
         var body, img;
         body = document.getElementsByTagName('body')[0];
         img = document.createElement('img');
@@ -218,7 +218,7 @@ var ScreenTest = function(bounds, srcImg, testImg, etalonImg) {
      * Get DOM element <img> with the specified id
      * @param {String} id
      */
-    function getImageDOM(id) {
+    function getImage(id) {
         return document.getElementById(id);
     }
 
@@ -226,7 +226,7 @@ var ScreenTest = function(bounds, srcImg, testImg, etalonImg) {
      * Delete DOM element <img> with the specified id
      * @param {String} id
      */
-    function deleteImageDOM(id) {
+    function deleteImage(id) {
         var body, img;
         body = document.getElementsByTagName('body')[0];
         img = document.getElementById(id);
@@ -239,7 +239,7 @@ var ScreenTest = function(bounds, srcImg, testImg, etalonImg) {
      * @param {String} src
      * @return {DOMElement}
      */
-    function createCanvasDOM(id, width, height) {
+    function createCanvas(id, width, height) {
         var body, canvas;
         body = document.getElementsByTagName('body')[0];
         canvas = document.createElement('canvas');
@@ -254,7 +254,7 @@ var ScreenTest = function(bounds, srcImg, testImg, etalonImg) {
      * Delete DOM element <canvas> with the specified id
      * @param {String} id
      */
-    function deleteCanvasDOM(id) {
+    function deleteCanvas(id) {
         var body, canvas;
         body = document.getElementsByTagName('body')[0];
         canvas = document.getElementById(id);
@@ -266,7 +266,7 @@ var ScreenTest = function(bounds, srcImg, testImg, etalonImg) {
      * @param {Number} result
      * @return {DOMElement}
      */
-    function createResultDOM(result) {
+    function createResult(result) {
         var body, div;
         body = document.getElementsByTagName('body')[0];
         div = document.createElement('div');
@@ -278,7 +278,7 @@ var ScreenTest = function(bounds, srcImg, testImg, etalonImg) {
     /**
      * Delete DOM element <div id='result'> with result
      */
-    function deleteResultDOM() {
+    function deleteResult() {
         var body, div;
         body = document.getElementsByTagName('body')[0];
         div = document.getElementById('result');
@@ -290,8 +290,8 @@ var ScreenTest = function(bounds, srcImg, testImg, etalonImg) {
     /********************************************************/
 
     this.tearDown = function() {
-        deleteCanvasDOM('screentest-test-canvas');
-        deleteResultDOM();
+        deleteCanvas('screentest-test-canvas');
+        deleteResult();
 
         countLoadImages = null;
         result = null;
