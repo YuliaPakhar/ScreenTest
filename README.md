@@ -3,7 +3,7 @@ Tool for testing the user interface by comparison screenshots.
 
 Based on JavaScript and HTML5 Canvas.
 
-Current version: 1.0.2
+Current version: 1.0.4
 
 ## Demo
 For a live demo, go to [http://www.andreychizh.com/develop/screentest/](http://www.andreychizh.com/develop/screentest/)
