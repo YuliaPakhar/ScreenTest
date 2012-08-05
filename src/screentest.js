@@ -50,7 +50,7 @@ var ScreenTest = function(srcImg, testImg, etalonImg, bounds) {
     /**
      * Event load images
      */
-    function onloadImagesDOM() {
+    function onloadImages() {
         var numberImages = 2;
         countLoadImages++;
         if (countLoadImages == numberImages) {
@@ -208,7 +208,7 @@ var ScreenTest = function(srcImg, testImg, etalonImg, bounds) {
         body = document.getElementsByTagName('body')[0];
         img = document.createElement('img');
         img.id = id;
-        img.onload = onloadImagesDOM;
+        img.onload = onloadImages;
         img.src = src;
         body.appendChild(img);
         return img;
