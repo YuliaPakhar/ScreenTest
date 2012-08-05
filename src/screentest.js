@@ -54,7 +54,7 @@ var ScreenTest = function(srcImg, testImg, etalonImg, bounds) {
         var numberImages = 2;
         countLoadImages++;
         if (countLoadImages == numberImages) {
-            main(bounds);
+            main();
         }
     }
 
@@ -66,7 +66,7 @@ var ScreenTest = function(srcImg, testImg, etalonImg, bounds) {
      * Main method.
      * Мakes comparison of images.
      */
-    function main(bounds) {
+    function main() {
         var imagesData, imageDataLength,
             etalonImagePixel, testImagePixel,
             imageWidth;
@@ -116,7 +116,7 @@ var ScreenTest = function(srcImg, testImg, etalonImg, bounds) {
         deleteImage('screentest-test-image');
         deleteCanvas('screentest-etalon-canvas');
 
-        if (bounds) {
+        if (bounds && bounds.length == 4) {
             imagesData.ctx.strokeStyle = 'rgb(255, 0, 0)';
             imagesData.ctx.strokeRect(bounds[0], bounds[1], bounds[2] - bounds[0], bounds[3] - bounds[1]);
         }
