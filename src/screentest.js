@@ -170,7 +170,7 @@ var ScreenTest = function(srcImg, testImg, etalonImg, bounds) {
      * In the event window.onload loads the images for the test
      */
     function loadImages() {
-        var imagesSrc = getImagesSrc(srcImg, testImg, etalonImg);
+        var imagesSrc = getImagesSrc();
         createImage('screentest-etalon-image', imagesSrc.etalon);
         createImage('screentest-test-image', imagesSrc.test);
     }
@@ -181,12 +181,9 @@ var ScreenTest = function(srcImg, testImg, etalonImg, bounds) {
 
     /**
      * Compile src for DOM elements <img> by the specified src and images names
-     * @param {String} srcImg
-     * @param {String} testImg
-     * @param {String} etalonImg
      * @return {Object}
      */
-    function getImagesSrc(srcImg, testImg, etalonImg) {
+    function getImagesSrc() {
         var imagesSrc = {};
         imagesSrc.test = srcImg + testImg;
         imagesSrc.etalon = srcImg + etalonImg;
