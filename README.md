@@ -45,6 +45,8 @@ The result is displayed in a div element with id="result" in the percentage diff
 
 ### 3. Cleaning of the environment after the test:
 
+##### Example:
+
     test.tearDown();
 
 ## Download Library
