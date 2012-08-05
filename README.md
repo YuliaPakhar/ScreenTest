@@ -1,4 +1,4 @@
-# ScreenTest Library [![Build Status](https://secure.travis-ci.org/joyent/node.png)](http://travis-ci.org/joyent/node)
+# ScreenTest Library [![Test](https://secure.travis-ci.org/joyent/node.png)](http://www.andreychizh.com/develop/screentest/)
 Tool for testing the UI by comparison screenshots. 
 
 Based on JavaScript and HTML5 Canvas.
