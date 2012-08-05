@@ -1,4 +1,4 @@
-# ScreenTest Library [![Test](https://secure.travis-ci.org/joyent/node.png)](http://www.andreychizh.com/develop/screentest/)
+# ScreenTest Library [![Test](https://secure.travis-ci.org/joyent/node.png)](http://andreychizh.com/develop/screentest/)
 Tool for testing the UI by comparison screenshots. 
 
 Based on JavaScript and HTML5 Canvas.
@@ -6,7 +6,7 @@ Based on JavaScript and HTML5 Canvas.
 Current version: 1.0.4
 
 ## Demo
-For a live demo, go to [http://www.andreychizh.com/develop/screentest/](http://www.andreychizh.com/develop/screentest/)
+For a live demo, go to [http://andreychizh.com/develop/screentest/](http://andreychizh.com/develop/screentest/)
 
 ## Documentation
 ### 1. Constructor:
@@ -55,4 +55,4 @@ The result is displayed in a div element with id="result" in the percentage diff
 
 Copyright © Andrey Chizh, 2012
 
-[http://www.andreychizh.com/](http://www.andreychizh.com/)
+[http://www.andreychizh.com/](http://andreychizh.com/)
