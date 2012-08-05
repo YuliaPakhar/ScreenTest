@@ -11,9 +11,16 @@ For a live demo, go to [http://www.andreychizh.com/develop/screentest/](http://w
 ## Documentation
 ### 1. Constructor:
 
-    var test = new ScreenTest(bounds, srcImg, testImg, etalonImg);
+    var test = new ScreenTest(srcImg, testImg, etalonImg, bounds);
     
 ##### Params:   
+    
+    @param {String} srcImg     Local path to the images folder.
+                               Attention! There should be a single host for html test page, folder with images 
+                               and this ScreenTest library (Constraint of HTML5 security)
+
+    @param {String} testImg    Name of test screenshot image
+    @param {String} etalonImg  Name of etalon screenshot image
     
     @param {Array|Null} bounds Array of coordinates top-left and right-bottom boundary points of comparison:
                                [0] - x-axis of left-top point, px
@@ -21,18 +28,12 @@ For a live demo, go to [http://www.andreychizh.com/develop/screentest/](http://w
                                [2] - x-axis of right-bottom point, px
                                [3] - y-axis of right-bottom point, px
 
-                               If null - compare screenshots with no boundaries.
+                               If no set - compare screenshots with no boundaries.
  
-    @param {String} srcImg     Local path to the images folder. The absolute or relative path.
-                               Attention! There should be a single host for html test page, folder with images 
-                               and this ScreenTest library (Constraint of HTML5 security)
-
-    @param {String} testImg    Name of test screenshot image
-    @param {String} etalonImg  Name of etalon screenshot image
 
 ##### Example:
 
-    var test = new ScreenTest([10,10,1430,890], 'img/test/', 'firefox_test.png', 'firefox_standart.png');
+    var test = new ScreenTest('img/test/', 'firefox_test.png', 'firefox_standart.png', [10,10,1430,890]);
     
 ### 2. Result:
 
