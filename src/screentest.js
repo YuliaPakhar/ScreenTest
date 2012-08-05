@@ -70,7 +70,7 @@ var ScreenTest = function(srcImg, testImg, etalonImg, bounds) {
         var imagesData, imageDataLength,
             etalonImagePixel, testImagePixel,
             imageWidth;
-        var allPixels = 1,
+        var allPixels = 0,
             errorPixels = 0;
 
         imagesData = getImagesData();
@@ -88,7 +88,6 @@ var ScreenTest = function(srcImg, testImg, etalonImg, bounds) {
                     (i < bounds[2] * 4 + imageWidth * parseInt(i / imageWidth)) &&
                     (i < bounds[3] * imageWidth)) {
 
-                    allPixels++;
                     if (etalonImagePixel[i] != testImagePixel[i]) {
                         errorPixels++;
                         testImagePixel[i] = 255;
@@ -97,7 +96,6 @@ var ScreenTest = function(srcImg, testImg, etalonImg, bounds) {
                     }
                 }
             } else {
-                allPixels++;
                 if (etalonImagePixel[i] != testImagePixel[i]) {
                     errorPixels ++;
                     testImagePixel[i] = 255;
@@ -105,9 +103,13 @@ var ScreenTest = function(srcImg, testImg, etalonImg, bounds) {
                     testImagePixel[i + 2] = 0;
                 }
             }
+            allPixels++;
         }
 
-        result = (errorPixels / allPixels) * 100;
+        if (allPixels != 0) {
+            result = (errorPixels / allPixels) * 100;            
+        }
+        
         imagesData.ctx.putImageData(imagesData.test, 0, 0);
 
         createResult(result.toFixed(2));
