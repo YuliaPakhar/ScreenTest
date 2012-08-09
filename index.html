@@ -29,44 +29,44 @@
       <section>
         <h1>ScreenTest Library</h1>
 
-<p>Tool for testing the user interface by comparison screenshots. </p>
+<p>Tool for testing the UI by comparison screenshots. </p>
 
 <p>Based on JavaScript and HTML5 Canvas.</p>
 
-<p>Current version: 1.0.2</p>
+<p>Current version: 1.0.4</p>
 
 <h2>Demo</h2>
 
-<p>For a live demo, go to <a href="http://www.andreychizh.com/develop/screentest/">http://www.andreychizh.com/develop/screentest/</a></p>
+<p>For a live demo, go to <a href="http://andreychizh.com/develop/screentest/">http://andreychizh.com/develop/screentest/</a></p>
 
-<h2>Use Library</h2>
+<h2>Documentation</h2>
 
 <h3>1. Constructor:</h3>
 
-<pre><code>var test = new ScreenTest(bounds, srcImg, testImg, etalonImg);
+<pre><code>var test = new ScreenTest(srcImg, testImg, etalonImg, bounds);
 </code></pre>
 
 <h5>Params:</h5>
 
-<pre><code>@param {Array|Null} bounds Array of coordinates top-left and right-bottom boundary points of comparison:
-                           [0] - x-axis of left-top point, px
-                           [1] - y-axis of left-top point, px
-                           [2] - x-axis of right-bottom point, px
-                           [3] - y-axis of right-bottom point, px
-
-                           If null - compare screenshots with no boundaries.
-
-@param {String} srcImg     Local path to the images folder. The absolute or relative path.
+<pre><code>@param {String} srcImg     Local path to the images folder.
                            Attention! There should be a single host for html test page, folder with images 
                            and this ScreenTest library (Constraint of HTML5 security)
 
 @param {String} testImg    Name of test screenshot image
 @param {String} etalonImg  Name of etalon screenshot image
+
+@param {Array|Null} bounds Array of coordinates top-left and right-bottom boundary points of comparison:
+                           [0] - x-axis of left-top point, px
+                           [1] - y-axis of left-top point, px
+                           [2] - x-axis of right-bottom point, px
+                           [3] - y-axis of right-bottom point, px
+
+                           If no set - compare screenshots with no boundaries.
 </code></pre>
 
 <h5>Example:</h5>
 
-<pre><code>var test = new ScreenTest([10,10,1430,890], 'img/test/', 'firefox_test.png', 'firefox_standart.png');
+<pre><code>var test = new ScreenTest('img/test/', 'firefox_test.png', 'firefox_standart.png', [10,10,1430,890]);
 </code></pre>
 
 <h3>2. Result:</h3>
@@ -80,6 +80,8 @@
 
 <h3>3. Cleaning of the environment after the test:</h3>
 
+<h5>Example:</h5>
+
 <pre><code>test.tearDown();
 </code></pre>
 
@@ -91,7 +93,7 @@
 
 <p>Copyright © Andrey Chizh, 2012</p>
 
-<p><a href="http://www.andreychizh.com/">http://www.andreychizh.com/</a></p>
+<p><a href="http://andreychizh.com/">http://andreychizh.com/</a></p>
       </section>
     </div>
     <footer>
