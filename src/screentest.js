@@ -4,10 +4,10 @@
  *
  * Version 1.0.4
  *
- * Demo: http://www.andreychizh.com/develop/screentest/
+ * Demo: http://andreychizh.com/develop/screentest/
  *
  * Copyright (c) Andrey Chizh, 2012
- * http://www.andreychizh.com/
+ * http://andreychizh.com/
  */
 
 /**
