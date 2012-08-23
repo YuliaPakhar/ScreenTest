@@ -6,7 +6,7 @@ Based on JavaScript and HTML5 Canvas.
 Current version: 1.0.4
 
 ## Demo
-For a live demo, go to [http://andreychizh.com/develop/screentest/](http://andreychizh.com/develop/screentest/)
+For a live demo, go to [http://dev.andreychizh.com/screentest/](http://dev.andreychizh.com/screentest/)
 
 ## Documentation
 ### 1. Constructor:
